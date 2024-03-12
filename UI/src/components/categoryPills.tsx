@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -20,6 +20,7 @@ function CategoryPills({
   const [translate, setTranslate] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // See if any width of category bar changed, then show the arrow left and right
     useEffect(() => {
       if (containerRef.current == null) return;
 
