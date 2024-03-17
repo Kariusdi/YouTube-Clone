@@ -76,7 +76,10 @@ function VideoGridItems({
           <a href={`/watch?v=${id}`} className="font-bold">
             {title}
           </a>
-          <a href={`/@${channel.id}`} className="text-secondary-text text-sm">
+          <a
+            href={`/@${channel.id}`}
+            className="text-secondary-text text-sm hover:text-secondary-dark"
+          >
             {channel.name}
           </a>
           <div className="flex gap-2">

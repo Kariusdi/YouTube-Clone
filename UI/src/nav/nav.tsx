@@ -1,14 +1,7 @@
-import {
-  ArrowLeft,
-  Bell,
-  Menu,
-  Mic,
-  Search,
-  Upload,
-  User,
-} from "lucide-react";
+import { ArrowLeft, Bell, Menu, Mic, Search, Upload, User } from "lucide-react";
 import Button from "../components/button";
 import { useState } from "react";
+import { useSideBarContext } from "../contexts/sidebarContext";
 
 function Nav() {
   const [showFullWidthSearch, setShowFullWidthSearch] = useState(false);
@@ -16,16 +9,7 @@ function Nav() {
   return (
     <div className="flex gap-10 lg:gap-20 justify-between pt-2 mb-6 mx-4">
       {/* Burger Menu and Logo (Left side) */}
-      <div
-        className={`gap-4 items-center flex-shrink-0 ${
-          showFullWidthSearch ? "hidden" : "flex"
-        }`}
-      >
-        <Button variant={"ghost"} size={"icon"}>
-          <Menu />
-        </Button>
-        <a href="/">Youtube Clone</a>
-      </div>
+      <NavFirstSection hidden={showFullWidthSearch}></NavFirstSection>
       {/* End */}
 
       {/* Search Bar (Middle) */}
@@ -96,3 +80,32 @@ function Nav() {
 }
 
 export default Nav;
+
+
+
+
+type NavFirstSectionProps = {
+  hidden?: boolean
+}
+
+
+export function NavFirstSection({ hidden = false }: NavFirstSectionProps) {
+  const { toggle } = useSideBarContext();
+  return (
+    <div
+      className={`gap-4 items-center flex-shrink-0 ${
+        hidden ? "hidden" : "flex"
+      }`}
+    >
+      <Button onClick={toggle} variant={"ghost"} size={"icon"}>
+        <Menu />
+      </Button>
+      <a href="/">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1024px-Logo_of_YouTube_%282015-2017%29.svg.png"
+          className="w-[3.5rem] h-5 flex-shrink-0"
+        />
+      </a>
+    </div>
+  );
+}
